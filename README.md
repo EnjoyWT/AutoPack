@@ -7,7 +7,7 @@
 使用方法:代码内有相关介绍,详情看ipa-build,cocoapods-build
 
 注意:cocoapods-build依赖于ipa-build脚本.电脑需要安装[jq][2](解析蒲公英返回结果使用).请确保你的蒲公英apikey,uKey的正确配置.不然会出的(我会告诉你这么没有做容错处理吗)
-[2]http://brew.sh/index_zh-cn.html
+[2]:http://brew.sh/index_zh-cn.html
 
 >qq邮箱收不到邮件时,找回邮件方法:邮箱首页-->自助查询(模块最底部)-->邮件查询-->进行白名单设置
 其他的邮箱如:126的是在垃圾邮箱内直接查找即可.
