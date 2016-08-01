@@ -15,7 +15,7 @@
 #			-s NAME				对应workspace下需要编译的scheme
 #			-n					编译前是否先clean工程
 #			-p					平台标识符
-#           -m                  是否发送邮件(默认不发送,暂不可用)
+#           -m                  是否发送邮件(默认不发送)
 # 作者：ccf
 # E-mail:ccf.developer@gmail.com
 # 创建日期：2012/09/24
@@ -34,7 +34,7 @@
 #--------------------------------------------
 # 修改日期：2016/07/29
 # 修改人：WT
-# 修改内容：增加自动上传至蒲公英,自动发送二维码扫描下载链接到对应邮箱(邮箱暂不可用)
+# 修改内容：增加自动上传至蒲公英,自动发送二维码扫描下载链接到对应邮箱
 #--------------------------------------------
 
 
@@ -162,9 +162,9 @@ while getopts $param_pattern optname
 		
         ;;
 
-#      "m")
-#      should_sendMail=y
-#      ;;
+      "m")
+      should_sendMail=y
+      ;;
       "?")
         echo "Error! Unknown option $OPTARG"
 		exit 2
@@ -276,7 +276,6 @@ done
 filePath="$( cd -P "$( dirname "$SOURCE"  )" && pwd  )"
 . $filePath/dandelion.sh
 ipafilePath=${build_path}/ipa-build/${ipa_name}.ipa #ipa文件路径
-echo "++++文件路径是===$ipafilePath"
 #开始上传 ipa
 outreulst=$(curl -F "file=@$ipafilePath" \
 -F "uKey=$uKey" \
@@ -288,14 +287,25 @@ echo -e "\033[32m二维码地址是结果是===$outreulst\033[0m\n"
 echo    "==============蒲公英app二维码地址========"
 
 
+
 #邮件发送
-#/usr/sbin/sendmail -t enjoywt@126.com <<EOF
-#SUBJECT: $displayName的$bundleVersion版本
-#TO: $InspectorMail
-#FROM: $senderName
-#CC: $copyToAddr #抄送给谁
-#MIME-VERSION: 1.0
-#Content-type: text/plain
-# $displayName的$bundleVersion版本已上传至蒲公英,请下载测试
-# 下二维码下载地址: $outreulst
-#EOF
+
+if [ "$should_sendMail" = "y" ];then
+/usr/sbin/sendmail -t $InspectorMail <<EOF
+SUBJECT: $displayName $bundleVersion
+TO: $InspectorMail
+FROM: $senderName
+CC: $copyToAddr
+MIME-VERSION: 1.0
+Content-type: text/plain
+
+Hi:
+
+${displayName}的${bundleVersion}版本已上传至蒲公英,请下载测试.
+
+二维码扫描下载地址:
+${outreulst}
+
+EOF
+
+fi
