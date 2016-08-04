@@ -12,7 +12,7 @@
       2.请确保你的蒲公英apikey,uKey的正确配置.
       3.邮件自动发送功能默认关闭.控制台输入参数 -m 即可开启.
       4.cocoapods-build依赖于ipa-build脚本.
-[2]:http://brew.sh/index_zh-cn.html
+      [2]:http://brew.sh/index_zh-cn.html
 
 
 >qq邮箱收不到邮件时,找回邮件方法:邮箱首页-->自助查询(模块最底部)-->邮件查询-->进行白名单设置.
