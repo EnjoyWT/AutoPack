@@ -1,4 +1,5 @@
 # AutoPack
+
 自动打包脚本[来源][1] ,这个版本是在原作者的基础上添加了自动上传至蒲公英的代码,邮件自动发送功能.以及一些简单的bash注释.
 [1]:https://github.com/wangliang0585/xcode_shell-master
 

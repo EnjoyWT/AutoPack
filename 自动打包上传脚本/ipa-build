@@ -293,9 +293,6 @@ ${outreulst}
 
 EOF
 
-fi
-
-
 #邮件发送结果判断
 
 if [ $? -eq 0 ]; then
@@ -312,4 +309,4 @@ echo    "*******End***邮件发送结果*******End******"
 exit 2
 fi
 
-
+fi
